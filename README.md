@@ -119,7 +119,7 @@ The other five need nothing beyond the agent itself.
   </picture>
 </p>
 
-The gap is the point, not the absolute score. The same model answered the same tasks twice; the only difference was whether the skill was read first.
+Read the gap, not the absolute score: the only difference inside each pair of bars is whether the skill was read first.
 
 <details>
 <summary><b>What each benchmark actually tested</b> — <i>the tasks behind the four bars</i></summary>
@@ -153,7 +153,7 @@ The gap is the point, not the absolute score. The same model answered the same t
 
 ## 🔁 Before and after
 
-Same source, same model, same day. Left column is the agent on its own; right column is the agent with the skill loaded.
+Left column: no skill. Right column: skill loaded.
 
 <details open>
 <summary><b>Tamil, before and after <code>localization-professional</code></b> — <i>seven strings, every "before" quoted from the grader's evidence</i></summary>
