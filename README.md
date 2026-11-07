@@ -7,13 +7,13 @@ Skills for AI coding agents that read the [Agent Skills](https://agentskills.io)
 All skills:
 
 ```bash
-npx skills add Sa74/skills
+npx skills add Sa74/claude-skills
 ```
 
 One skill:
 
 ```bash
-npx skills add Sa74/skills --skill readme-writer
+npx skills add Sa74/claude-skills --skill readme-writer
 ```
 
 Add `-g` to install for every project instead of the current one.
