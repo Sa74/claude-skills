@@ -11,7 +11,7 @@ description: >
   l10n, translation for macOS/iOS, Apple HIG compliance in other languages, or needs culturally correct
   technical translations. Even partial overlap with multilingual UI string work should trigger this skill.
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Localization Professional
@@ -71,67 +71,86 @@ This is the most important section. Tamil output must use classical Tamil (ச�
 The single most common failure mode in Tamil localization is writing an English word using Tamil script
 instead of using the actual Tamil word. This feels like translating but it is not — it produces gibberish
 for Tamil readers and signals low-quality localization. When you encounter a technical term you're unsure
-about, look it up in the glossary below. If it's not in the glossary, construct a compound from pure Tamil
-morphemes. Never fall back to phonetic transcription of the English word.
+about, look it up in the glossary below, then in the sources listed under Sources. If no source has a word
+for it, do not build one: keep the source term and flag the string for a Tamil reader. Never fall back to
+phonetic transcription of the English word.
 
 **Self-check:** After writing any Tamil string, scan it character by character. If you can "read it back"
 and hear an English word, you've transliterated instead of translated. Delete it and use the Tamil term.
 
+### Sources
+
+Every Tamil word in this skill comes from a published source, named in the Source column:
+
+- **TVA**: the Tamil Virtual Academy technical glossary (tamilvu.org), with the subject column in brackets.
+  For software terms read the Information Technology column first; other subjects often give another
+  sense of the same English word (for "kernel", Agriculture gives a grain).
+- **Lexicon**: the University of Madras Tamil Lexicon.
+- **Wiktionary**: Tamil Wiktionary (ta.wiktionary.org).
+- **Composed**: a phrase translated word by word from sourced words, e.g. ஒலிச்சாதனம் = ஒலி (audio) +
+  சாதனம் (device). Composing a phrase is translation. Building a new word for a single term is not, and is
+  never allowed.
+
+A row marked **flag** has no settled word: keep the source term, flag the string, and ask a Tamil reader.
+
 ### Core Vocabulary — Audio & System Terms
 
-| English | Tamil (CORRECT) | WRONG (transliterated) | Why wrong |
+| English | Tamil (CORRECT) | WRONG (transliterated) | Source |
 |---|---|---|---|
-| file | கோப்பு | ஃபைல் | Phonetic English |
-| error message | பிழைச்செய்தி | எர்ரர் செய்தி | எர்ரர் is phonetic |
-| program / app | நிரல் / செயலி | புரோகிராம் / ஆப் | Phonetic English |
-| audio | ஒலி / ஒலிப்பதிவு | ஆடியோ | Phonetic English |
-| buffer | இடையகம் | பஃபர் | Phonetic English |
-| sample rate | மாதிரி வீதம் | சாம்பிள் ரேட் | Phonetic English |
-| driver | இயக்கி | டிரைவர் | Phonetic English |
-| latency | தாமதம் | லேட்டன்சி | Phonetic English |
+| file | கோப்பு | ஃபைல் | TVA (IT) |
+| error message | பிழைச் சுட்டும் செய்தி | எர்ரர் செய்தி | TVA (IT). The short form பிழைச் செய்தி is composed: பிழை (error) + செய்தி (message), both TVA (IT) |
+| program / app | நிரல் / செயலி | புரோகிராம் / ஆப் | நிரல்: TVA (IT). செயலி: Wiktionary; TVA (IT) gives பயன்பாட்டு மென்பொருள் for "application software" |
+| audio | ஒலி / கேட்பொலி | ஆடியோ | ஒலி: TVA ("sound"), Lexicon, Wiktionary. கேட்பொலி: TVA (IT). A recording is ஒலிப்பதிவு: TVA (Engineering) |
+| buffer | இடையகம் | பஃபர் | TVA (IT) |
+| sample rate | பதம் எடுப்பு வீதம் | சாம்பிள் ரேட் | TVA (IT), entry "sampling rate". Engineering: பதம்பார்ப்பு வீதம் |
+| driver | இயக்கு நிரல் | டிரைவர் | TVA (IT, Engineering) |
+| latency | உள்ளுறை சுணக்கம் | லேட்டன்சி | TVA (IT); also உள்ளுறைவு |
 
 ### Hardware & System Terms (commonly missed)
 
-These terms are where transliteration errors happen most often because they feel "technical." Every one of
-these has a pure Tamil equivalent. Use it.
+These terms are where transliteration errors happen most often because they feel "technical." Most of them
+have a published Tamil word. Use it. Rows marked **flag** have none yet.
 
-| English | Tamil (CORRECT) | WRONG (transliterated) | Notes |
+| English | Tamil (CORRECT) | WRONG (transliterated) | Source / notes |
 |---|---|---|---|
-| microphone | நுண்ணொலிவாங்கி | மைக்ரோஃபோன் | #1 most-missed term. நுண்ணொலிவாங்கி = "fine-sound-receiver." |
-| speaker / loudspeaker | ஒலிபெருக்கி | ஸ்பீக்கர் | ஒலிபெருக்கி = "sound amplifier" |
-| headphone | தலையணி ஒலிக்கருவி | ஹெட்ஃபோன் | |
-| keyboard | விசைப்பலகை | கீபோர்ட் | |
-| connection | இணைப்பு | கனெக்ஷன் | |
-| network | பிணையம் | நெட்வொர்க் | |
-| settings | அமைப்புகள் | செட்டிங்ஸ் | |
-| kernel | கருநிரல் | கர்னல் | கர்னல் looks Tamil but sounds English — still a transliteration |
-| kernel extension | கருநிரல் நீட்சி | கர்னல் எக்ஸ்டென்ஷன் | |
-| access (verb) | அணுகு | ஆக்சஸ் | |
-| monitor (verb) | கண்காணி | மானிட்டர் | |
-| detect | கண்டறி | டிடெக்ட் | |
-| routing | வழிப்படுத்தல் | ரூட்டிங் | |
-| channel | தடம் | சேனல் | சேனல் is a loanword; use தடம் |
-| sample | மாதிரி | சாம்பிள் | |
-| device | சாதனம் | டிவைஸ் | **Base term.** Always use சாதனம் for "device" — even in audio contexts. Use ஒலிச்சாதனம் ONLY when the English source explicitly says "audio device" as a compound. For pluralized strings like "%d device(s)", use சாதனம்/சாதனங்கள், never ஒலிச்சாதனம்/ஒலிச்சாதனங்கள். |
-| audio device | ஒலிச்சாதனம் | ஆடியோ டிவைஸ் | Compound form — use ONLY when English source explicitly contains the full compound "audio device." |
-| interface | இடைமுகம் | இன்டர்ஃபேஸ் | |
-| restart | மறுதொடக்கம் செய் | ரீஸ்டார்ட் | |
-| install | நிறுவு | இன்ஸ்டால் | |
-| third-party | மூன்றாம் தரப்பு | தேர்ட் பார்ட்டி | |
-| permission | அனுமதி | பெர்மிஷன் | |
-| System Integrity Protection | கணினி ஒருமைப்பாடு பாதுகாப்பு | சிஸ்டம் இன்டெக்ரிட்டி புரொடெக்ஷன் | Translate the concept, not the brand |
+| microphone | ஒலிவாங்கி | மைக்ரோஃபோன் | TVA (Engineering), Wiktionary. #1 most-missed term |
+| speaker / loudspeaker | ஒலிப்பான் | ஸ்பீக்கர் | TVA (IT). Engineering gives ஒலிபெருக்கி for "loudspeaker" |
+| headphone | செவிப்பொறி / கேள்பொறி | ஹெட்ஃபோன் | TVA (Engineering) |
+| keyboard | விசைப்பலகை | கீபோர்ட் | TVA (Administration, Engineering, Home Science); IT gives சாவிப்பலகை |
+| connection | இணைப்பு | கனெக்ஷன் | TVA (IT) |
+| network | வலையமைப்பு / பிணையம் | நெட்வொர்க் | வலையமைப்பு: TVA (IT, Engineering). பிணையம்: Wiktionary |
+| settings | அமைப்புகள் | செட்டிங்ஸ் | TVA (IT) |
+| kernel | **flag** | கர்னல் | Unsettled. TVA gives கரு (IT) and உட்கரு (Mathematics), and கரு also means embryo. Ask a Tamil reader; never build a word |
+| kernel extension | **flag** | கர்னல் எக்ஸ்டென்ஷன் | The kernel word, once settled, + விரிவாக்கம் (extension, TVA IT) or நீட்சி (TVA Engineering, Mathematics) |
+| access (verb) | அணுகு | ஆக்சஸ் | Lexicon, Wiktionary. TVA (IT) gives the nouns அணுகல், அணுக்கம் |
+| monitor (verb) | கண்காணி | மானிட்டர் | TVA (IT) |
+| detect | கண்டறி / கண்டுபிடி | டிடெக்ட் | கண்டறி: Wiktionary. கண்டுபிடி: TVA (Administration, Home Science) |
+| routing | வழிப்படுத்தல் | ரூட்டிங் | TVA (IT) |
+| channel | தடம் | சேனல் | TVA (IT) |
+| sample | பதக்கூறு / மாதிரி | சாம்பிள் | பதக்கூறு: TVA (IT, Engineering). மாதிரி: TVA (Engineering, Administration) |
+| device | சாதனம் | டிவைஸ் | TVA (Engineering, Physics). **Base term.** Always use சாதனம் for "device" — even in audio contexts. Use ஒலிச்சாதனம் ONLY when the English source explicitly says "audio device" as a compound. For pluralized strings like "%d device(s)", use சாதனம்/சாதனங்கள், never ஒலிச்சாதனம்/ஒலிச்சாதனங்கள். |
+| audio device | ஒலிச்சாதனம் | ஆடியோ டிவைஸ் | Composed: ஒலி + சாதனம். Compound form — use ONLY when English source explicitly contains the full compound "audio device." |
+| interface | இடைமுகம் | இன்டர்ஃபேஸ் | TVA (IT) |
+| restart | மறுதொடக்கம் செய் | ரீஸ்டார்ட் | TVA (IT): மறுதொடக்கம் |
+| install | நிறுவு | இன்ஸ்டால் | TVA (IT) |
+| third-party | மூன்றாம் தரப்பு | தேர்ட் பார்ட்டி | TVA (Banking) |
+| permission | அனுமதி / இசைவு | பெர்மிஷன் | TVA (Administration); அனுமதி also Lexicon, Wiktionary |
+| System Integrity Protection | **flag** | சிஸ்டம் இன்டெக்ரிட்டி புரொடெக்ஷன் | Apple feature name. Use Apple's Tamil name if it ships one; otherwise compose from அமைப்பு (system, TVA Engineering), ஒருமைப்பாடு (integrity, Lexicon) and பாதுகாப்பு (protection, TVA Administration), and flag it |
 
 ### Zero Latin Characters Rule
 
-Tamil strings must contain **zero Latin characters (A-Z, a-z)** outside of format specifiers (%@, %d, %lld).
-Digits (0-9) are fine. This includes:
+Tamil strings must contain **zero Latin characters (A-Z, a-z)** except:
 
-- Unit symbols: Write ஹெர்ட்ஸ் not Hz, டெசிபெல் not dB, மி.வி not ms
-- Brand names that are part of a sentence: Wrap them in %@ and pass from code
-- Any word that "sounds English when read aloud in Tamil" — it's transliterated, replace it
+- Format specifiers (%@, %d, %lld). Digits (0-9) are fine.
+- Unit symbols (Hz, kHz, dB, ms). Keep them as they are: ஹெர்ட்ஸ் is the English word in Tamil letters,
+  the exact transliteration this section exists to prevent. See Unit Symbols below.
+- Names on the Do-Not-Translate list (USB, AirPlay, Mac). Keep them as-is, or wrap them in %@ and pass
+  them from code.
+- A term flagged for a Tamil reader because no source has a word for it.
 
-A stray "Hz" in Latin characters breaks visual consistency for Tamil users on macOS. Treat
-Latin characters in Tamil strings as a hard failure, the same way you'd treat a missing format specifier.
+Any other English word in a Tamil string, in Latin letters or in Tamil script, is a hard failure, the same
+way you'd treat a missing format specifier. If a Tamil word "sounds English when read aloud", it is
+transliterated: replace it.
 
 ### Tamil Pluralization
 
@@ -273,7 +292,7 @@ Never translate, remove, or duplicate format specifiers (%@, %d, %lld, %1$@). Us
 // en_US
 "audio_device_error" = "Device "%@" failed with error code %d.";
 // Tamil — reordered for SOV grammar, specifiers intact
-"audio_device_error" = ""%@" சாதனம் பிழைக்குறியீடு %d உடன் தோல்வியடைந்தது.";
+"audio_device_error" = ""%@" சாதனம் பிழைக் குறிமுறை %d உடன் தோல்வியடைந்தது.";
 // German — specifiers repositioned for German syntax
 "audio_device_error" = "Gerät „%@" ist mit Fehlercode %d fehlgeschlagen.";
 ```
@@ -297,13 +316,12 @@ Never translate in any locale: Apple framework names (CoreAudio, AVFoundation, I
 API identifiers (AVAudioEngine, kAudioUnitProperty_SampleRate), file extensions (.aiff, .wav, .caf),
 brand names (AirPlay, HomePod, Logic Pro, Mac).
 
-### Unit Symbols: Language-Specific Exception for Tamil
+### Unit Symbols
 
-Unit symbols (Hz, kHz, dB, dBFS, ms) are kept as-is in Latin-script languages (English, Spanish, German).
-
-**For Tamil, unit symbols in Latin characters violate the zero-Latin rule.** Use Tamil equivalents:
-- Hz → ஹெர்ட்ஸ், kHz → கிலோஹெர்ட்ஸ், dB → டெசிபெல், ms → மி.வி
-- Or wrap the value in a format specifier so the UI layer handles rendering
+Unit symbols (Hz, kHz, dB, dBFS, ms) are kept as-is in every locale, Tamil included. They are symbols, not
+words, and the Tamil Virtual Academy glossary has no Tamil name for them either: it describes the hertz as
+அதிர்வெண் அலகு ("unit of frequency") and gives the decibel as டெசிபெல், the English name in Tamil letters.
+Never write ஹெர்ட்ஸ், கிலோஹெர்ட்ஸ் or டெசிபெல் in a Tamil string.
 
 ### Decision Framework: Translate vs. Retain
 
@@ -312,7 +330,7 @@ Is the term a proper noun or brand name?
   → YES → Do not translate. (CoreAudio, AirPlay, USB)
   → NO ↓
 Is the term a universally recognized abbreviation or unit?
-  → YES → Keep as-is in Latin-script locales. Tamil: use Tamil equivalent.
+  → YES → Keep as-is in every locale, Tamil included.
   → NO ↓
 Is the term in the glossary?
   → YES → Use the glossary translation.
@@ -320,11 +338,11 @@ Is the term in the glossary?
 Is there an established Apple precedent in the target locale?
   → YES → Match Apple's translation.
   → NO ↓
-Is the term in the language's standards body lexicon? (RAE, Duden, Tamil Virtual University)
+Is the term in the language's standards body lexicon? (RAE, Duden; for Tamil, the Sources above)
   → YES → Use the standard form.
   → NO ↓
 Create a new term:
-  - Tamil: Construct from pure Tamil morphemes. No transliteration.
+  - Tamil: Never. Translate a phrase word by word from sourced words; flag a single term no source has.
   - Spanish/German: Prefer calque over loanword. If loanword is industry-standard, use it.
 ```
 
@@ -336,35 +354,49 @@ Create a new term:
 
 | English | Tamil (ta_IN) | Spanish (es_ES / es_419) | German (de_DE) |
 |---|---|---|---|
-| Sample rate | மாதிரி வீதம் | Frecuencia de muestreo | Abtastrate |
+| Sample rate | பதம் எடுப்பு வீதம் | Frecuencia de muestreo | Abtastrate |
 | Buffer size | இடையக அளவு | Tamaño del búfer | Puffergröße |
-| Latency | தாமதம் | Latencia | Latenz |
+| Latency | உள்ளுறை சுணக்கம் | Latencia | Latenz |
 | Channel | தடம் | Canal | Kanal |
-| Input gain | உள்ளீட்டு மிகைப்பு | Ganancia de entrada | Eingangsverstärkung |
+| Input gain | உள்ளீட்டுப் பெருக்கம் | Ganancia de entrada | Eingangsverstärkung |
 | Output level | வெளியீட்டு மட்டம் | Nivel de salida | Ausgangspegel |
-| Clipping | ஒலிமிகைவு | Recorte / Distorsión | Übersteuerung |
-| Bit depth | பிட் ஆழம் | Profundidad de bits | Bittiefe |
-| DAC | எண்-ஒப்புமை மாற்றி | Convertidor digital-analógico | Digital-Analog-Wandler |
-| Plugin (audio) | செருகுநிரல் | Complemento | Plug-in |
+| Clipping | வெட்டுதல் | Recorte / Distorsión | Übersteuerung |
+| Bit depth | துணுக்கு ஆழம் | Profundidad de bits | Bittiefe |
+| DAC | இலக்கமுறை-தொடர்முறை மாற்றி | Convertidor digital-analógico | Digital-Analog-Wandler |
+| Plugin (audio) | **flag** | Complemento | Plug-in |
+
+Tamil sources: TVA (IT) for sample rate, latency, channel and DAC; TVA (Engineering) for clipping, where IT
+gives கத்தரித்தல். Composed: buffer size (இடையகம், TVA IT + அளவு, Lexicon), input gain (உள்ளீடு +
+பெருக்கம், both TVA IT), output level (வெளியீடு, TVA IT + மட்டம், TVA Engineering), bit depth (துணுக்கு,
+TVA IT + ஆழம், TVA Engineering). Plugin: no source has a word.
 
 ### Hardware
 
 | English | Tamil (ta_IN) | Spanish | German |
 |---|---|---|---|
 | Audio interface | ஒலி இடைமுகம் | Interfaz de audio | Audio-Interface |
-| USB microphone | USB நுண்ணொலிவாங்கி | Micrófono USB | USB-Mikrofon |
-| Headphone jack | ஒலிக்கருவி இணைப்பு | Conector de auriculares | Kopfhöreranschluss |
-| Bluetooth speaker | புளூடூத் ஒலிபெருக்கி | Altavoz Bluetooth | Bluetooth-Lautsprecher |
+| USB microphone | USB ஒலிவாங்கி | Micrófono USB | USB-Mikrofon |
+| Headphone jack | செவிப்பொறி முளை | Conector de auriculares | Kopfhöreranschluss |
+| Bluetooth speaker | Bluetooth ஒலிப்பான் | Altavoz Bluetooth | Bluetooth-Lautsprecher |
+
+Tamil sources: ஒலி இடைமுகம் is composed (ஒலி + இடைமுகம், TVA IT); ஒலிவாங்கி: TVA (Engineering);
+செவிப்பொறி முளை is composed (headphone, TVA Engineering + jack, TVA IT); ஒலிப்பான்: TVA (IT). USB and
+Bluetooth are names and stay in Latin.
 
 ### System-Level
 
 | English | Tamil (ta_IN) | Spanish | German |
 |---|---|---|---|
-| Driver | இயக்கி | Controlador | Treiber |
+| Driver | இயக்கு நிரல் | Controlador | Treiber |
 | Daemon (user-facing) | பின்னணிச் செயலி | Servicio en segundo plano | Hintergrundprozess |
-| Kernel extension | கருநிரல் நீட்சி | Extensión del kernel | Kernel-Erweiterung |
-| System Settings (macOS 13+) | கணினி அமைப்புகள் | Ajustes del Sistema | Systemeinstellungen |
-| Sandbox | தனிமைப்படுத்தல் | Entorno aislado | Sandbox |
+| Kernel extension | **flag** | Extensión del kernel | Kernel-Erweiterung |
+| System Settings (macOS 13+) | **flag** | Ajustes del Sistema | Systemeinstellungen |
+| Sandbox | **flag** | Entorno aislado | Sandbox |
+
+Tamil sources: இயக்கு நிரல்: TVA (IT). பின்னணிச் செயலி is composed (background, TVA Engineering + app,
+Wiktionary); no source has a word for daemon itself. Kernel extension: see the kernel row above. System
+Settings is Apple's name: match Apple's Tamil if it ships one, otherwise flag it. Sandbox: no source has a
+word; the nearest TVA (IT) term is தனிமைப்பாடு, "isolation".
 
 ---
 
@@ -374,7 +406,7 @@ Create a new term:
 
 | Locale | Bad | Good | Why |
 |---|---|---|---|
-| `ta_IN` | "ஆடியோ டிவைஸ் எர்ரர்: டைம்அவுட்" | "ஒலிச்சாதனப் பிழை: காலக்கெடு மீறல்" | Bad is entirely transliterated English. |
+| `ta_IN` | "ஆடியோ டிவைஸ் எர்ரர்: டைம்அவுட்" | "ஒலிச்சாதனப் பிழை: நேரமுடிவு" | Bad is entirely transliterated English. |
 | `de_DE` | "Audio Gerät Fehler: Zeit Überschreitung" | "Audiogerätefehler: Zeitüberschreitung" | Compounds must not be split. |
 | `es_ES` | "Verifica tus conexiones" | "Verifique sus conexiones" | Bad uses informal tú; system UI requires usted. |
 
@@ -382,7 +414,7 @@ Create a new term:
 
 | Locale | Bad | Good | Why |
 |---|---|---|---|
-| `ta_IN` | "[App] மைக்ரோஃபோனை access செய்ய want ஆகிறது" | "[App] நுண்ணொலிவாங்கியை அணுக விரும்புகிறது" | Bad is Tamil-English code-mixing. |
+| `ta_IN` | "[App] மைக்ரோஃபோனை access செய்ய want ஆகிறது" | "[App] ஒலிவாங்கியை அணுக விரும்புகிறது" | Bad is Tamil-English code-mixing. |
 | `de_DE` | "[App] möchte das Mikro benutzen" | "[App] möchte auf das Mikrofon zugreifen" | "Mikro" is informal. System dialogs need full form. |
 | `es_ES` | "[App] quiere usar el micrófono" | "[App] desea acceder al micrófono" | "quiere" is too casual for a permission dialog. |
 
@@ -435,7 +467,7 @@ natural spoken phrasing — not UI-label shorthand.
 
 | Type | en_US | Tamil |
 |---|---|---|
-| Label | "Volume slider" | "ஒலியளவு நெகிழ்வி" |
+| Label | "Volume slider" | "ஒலியளவு நழுவுறுப்பு" |
 | Hint | "Adjusts the output volume" | "வெளியீட்டு ஒலியளவை மாற்றும்" |
 | Value | "50 percent" | "50 விழுக்காடு" |
 
@@ -482,9 +514,9 @@ re-translated and archived.
 Checks marked 🛑 are hard failures — do not emit the string until fixed.
 
 1. 🛑 Format specifier count and type match source
-2. 🛑 **Tamil: zero Latin characters (A-Z, a-z) outside format specifiers** — includes unit symbols (Hz→ஹெர்ட்ஸ், dB→டெசிபெல்)
+2. 🛑 **Tamil: zero Latin characters (A-Z, a-z)** except format specifiers, unit symbols (Hz, kHz, dB, ms), Do-Not-Translate names and flagged terms. Never write ஹெர்ட்ஸ் or டெசிபெல்
 3. 🛑 **Tamil: zero transliterated English words** — read every Tamil word aloud; if it sounds English, replace it with the pure Tamil term from the glossary
-4. 🛑 **Tamil: all hardware/system terms use glossary entries** — especially: நுண்ணொலிவாங்கி (microphone), கருநிரல் (kernel), இணைப்பு (connection), இயக்கி (driver), சாதனம் (device)
+4. 🛑 **Tamil: all hardware/system terms use glossary entries** — especially: ஒலிவாங்கி (microphone), ஒலிப்பான் (speaker), இணைப்பு (connection), இயக்கு நிரல் (driver), சாதனம் (device). A term marked flag, or one no source has, is flagged for a Tamil reader, never built
 4a. 🛑 **Tamil: no compound inflation** — use the base glossary term, not a compound, unless the English source uses the compound. "device" = சாதனம், NOT ஒலிச்சாதனம். Only use ஒலிச்சாதனம் when the source explicitly says "audio device."
 5. 🛑 **Tamil: no Devanagari or Cyrillic script mixing** — only Unicode Tamil block (U+0B80–U+0BFF)
 6. 🛑 **es_ES: formal register (usted)** — scan for tu/tus possessives and tú verb conjugations; replace with su/sus and usted forms
@@ -509,4 +541,8 @@ Tested across 3 evals (audio strings, permission dialogs, stringsdict pluralizat
 | **Delta** | **+31.2pp** | +8.9s | +7,454 |
 
 Primary differentiators: Tamil purity (glossary prevents transliteration), Spanish formal register
-(conjugation table prevents tú fallback), Tamil unit symbols (Hz→ஹெர்ட்ஸ் conversion).
+(conjugation table prevents tú fallback).
+
+The graders had no Tamil references to check against. Checked later against the Sources above, three
+passing Tamil answers did not hold up: நுண்ணொலிவாங்கி and கருநிரல் நீட்சி are in none of them, and
+ஹெர்ட்ஸ் is a transliteration. The glossary now gives ஒலிவாங்கி, flags kernel and keeps Hz in Latin.

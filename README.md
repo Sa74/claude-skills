@@ -129,7 +129,7 @@ Read the gap, not the absolute score: the only difference inside each pair of ba
 | Skill | Tasks | Checks | What the baseline got wrong on its own |
 |:---|:---|:---:|:---|
 | `principal-apple-engineer` | A fitness app across iPhone, Watch and Vision Pro · a design system with Swift Testing tests · a Mac app with a Network Extension sold in and outside the App Store | 14 each | Reached for `ObservableObject`, XCTest and `DispatchQueue`; skipped `#if os()`, Reduce Motion and WatchConnectivity. Design-system task: 7 of 14 without, 14 of 14 with |
-| `localization-professional` | Five UI strings into Tamil, two Germans and LATAM Spanish · a permission dialog into three Englishes, Castilian and Tamil · plural files for Tamil and German | 8 + 9 + 8 | Transliterated English into Tamil script, left "Hz" in Latin letters, used informal *tú* in system UI, and once mixed Devanagari vowel signs into a Tamil word |
+| `localization-professional` | Five UI strings into Tamil, two Germans and LATAM Spanish · a permission dialog into three Englishes, Castilian and Tamil · plural files for Tamil and German | 8 + 9 + 8 | Transliterated English into Tamil script, used informal *tú* in system UI, and once mixed Devanagari vowel signs into a Tamil word |
 | `readme-writer` | A real 1,800-line README to modernise · an invented Rust vector database · an invented Go CLI | 14 + 12 + 10 | Bullet-list features, ASCII art instead of diagrams, install steps in three places, the headline number repeated four to six times, SVGs written to disk and never embedded |
 | `break-the-template` | A Kubernetes migration post-mortem · an About page for a pastry chef turned data scientist · a quarter's metrics that must not be a deck | 6 each | Decorated articles and stock scrollytelling; 0 of 3 respected reduced motion; and across 48 source facts the baselines invented four, the skill runs none |
 
@@ -162,15 +162,17 @@ Left column: no skill. Right column: skill loaded.
 
 | Source | Without the skill | With the skill |
 |:---|:---|:---|
-| microphone | ~~மைக்ரோஃபோன்~~ · transliterated | **நுண்ணொலிவாங்கி** |
+| microphone | ~~மைக்ரோஃபோன்~~ · transliterated | **நுண்ணொலிவாங்கி** · *checked later: in no source; now ஒலிவாங்கி* |
 | buffer | ~~பைஃபர்~~ · transliterated | **இடையகம்** |
-| kernel extension | ~~கர்னல்~~ நீட்டிப்பு · half English | **கருநிரல் நீட்சி** |
-| Sample Rate: %@ Hz | மாதிரி விகிதம்: %@ ~~Hz~~ · Latin letters | **மாதிரி வீதம்: %@ ஹெர்ட்ஸ்** |
+| kernel extension | ~~கர்னல்~~ நீட்டிப்பு · half English | **கருநிரல் நீட்சி** · *checked later: கருநிரல் is in no source; now flagged* |
+| Sample Rate: %@ Hz | மாதிரி விகிதம்: %@ ~~Hz~~ · Latin letters | **மாதிரி வீதம்: %@ ஹெர்ட்ஸ்** · *checked later: Hz in Tamil letters, and the glossary's entry is பதம் எடுப்பு வீதம்; now பதம் எடுப்பு வீதம்: %@ Hz* |
 | channel | ~~சேனல்~~ · transliterated | **தடம்** |
 | "…your microphone", es_ES | ~~tu~~ micrófono, ~~Asegúrate~~ · informal | **su micrófono, Asegúrese** |
 | "%d samples", Tamil plural | ~~மாதिरिகள्~~ · Devanagari inside a Tamil word | a Tamil word, in Tamil script only |
 
 Each failure had a cause in the skill text and the fix was specificity: a Tamil-only exception for unit symbols, a glossary that grew from 8 rows to 31 with the wrong transliteration printed beside the right word, and an eleven-row *tú* to *usted* table in place of a one-line rule. Five edits; the failing rows above became the passing ones.
+
+The grader had no Tamil references. Checked later against the Tamil Virtual Academy technical glossary, the University of Madras Tamil Lexicon and Tamil Wiktionary, three of those passing answers did not hold up: நுண்ணொலிவாங்கி and கருநிரல் are in none of them, and ஹெர்ட்ஸ் is the English word in Tamil letters. Every Tamil word in the skill now names its source, unit symbols stay in Latin, and a term no source has is flagged for a Tamil reader.
 
 </details>
 
@@ -258,8 +260,8 @@ Both sides kept 47 of the 48 source facts. The skill's one drop, "3 years as hea
 
 | Skill | What went wrong | What the skill says now |
 |:---|:---|:---|
-| `localization-professional` | "Hz" left in Latin letters inside a Tamil string; two rules contradicted each other | Unit symbols stay Latin in en/es/de; Tamil spells them (ஹெர்ட்ஸ், டெசிபெல்) or moves them into a placeholder |
-| `localization-professional` | "Microphone" came back as a sound-alike | 31-row glossary, each entry with the wrong transliteration printed beside the right word; unknown terms are built from Tamil morphemes, never sounded out |
+| `localization-professional` | "Hz" left in Latin letters inside a Tamil string; two rules contradicted each other | Unit symbols stay in Latin in every locale. The first fix spelled them in Tamil letters (ஹெர்ட்ஸ்), the transliteration the skill bans |
+| `localization-professional` | "Microphone" came back as a sound-alike | A glossary where every Tamil word names a published source; a term no source has is flagged for a Tamil reader, never built. The first fix built words instead |
 | `localization-professional` | Castilian UI addressed the user as *tú* | An eleven-row *tú* to *usted* conjugation table and a red-flag scan before returning |
 | `principal-apple-engineer` | The reference files used the patterns the rules forbid | References rewritten; the force-unwrap rule names the optional APIs that trap people |
 | `principal-apple-engineer` | Nobody stated where a system extension bundle lives | The path, in two references |
