@@ -165,7 +165,7 @@ Left column: no skill. Right column: skill loaded.
 | microphone | ~~மைக்ரோஃபோன்~~ · transliterated | **நுண்ணொலிவாங்கி** · *checked later: in no source; now ஒலிவாங்கி* |
 | buffer | ~~பைஃபர்~~ · transliterated | **இடையகம்** |
 | kernel extension | ~~கர்னல்~~ நீட்டிப்பு · half English | **கருநிரல் நீட்சி** · *checked later: கருநிரல் is in no source; now flagged* |
-| Sample Rate: %@ Hz | மாதிரி விகிதம்: %@ ~~Hz~~ · Latin letters | **மாதிரி வீதம்: %@ ஹெர்ட்ஸ்** · *checked later: Hz in Tamil letters; now Hz* |
+| Sample Rate: %@ Hz | மாதிரி விகிதம்: %@ ~~Hz~~ · Latin letters | **மாதிரி வீதம்: %@ ஹெர்ட்ஸ்** · *checked later: Hz in Tamil letters, and the glossary's entry is பதம் எடுப்பு வீதம்; now பதம் எடுப்பு வீதம்: %@ Hz* |
 | channel | ~~சேனல்~~ · transliterated | **தடம்** |
 | "…your microphone", es_ES | ~~tu~~ micrófono, ~~Asegúrate~~ · informal | **su micrófono, Asegúrese** |
 | "%d samples", Tamil plural | ~~மாதिरिகள्~~ · Devanagari inside a Tamil word | a Tamil word, in Tamil script only |
